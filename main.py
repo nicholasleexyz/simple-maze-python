@@ -3,14 +3,14 @@ import numpy as np
 
 
 def main():
-    width, height = 16, 16
+    width, height = 33, 33
     maze = np.ones((width, height), dtype=int)
     maze[1::2, 1::2] = 0  # clear each room
 
-    stack = [(0, 0)]
+    stack = [(1, 1)]
 
     visited = set()
-    visited.add((0, 0))
+    visited.add((1, 1))
 
     while stack:
         current = stack[-1]
@@ -35,12 +35,12 @@ def main():
         else:
             stack.pop()
 
-    scale = 3
+    scale = 2
     scaled_maze = np.kron(maze, np.ones((scale, scale), dtype=int))
 
-    for y in range(height * scale):
+    for y in range(1, height * scale):
         line = ""
-        for x in range(width * scale):
+        for x in range(1, width * scale):
             if (0 < x and scaled_maze[x - 1, y] == 0) or \
                     (0 < y and scaled_maze[x, y - 1] == 0) or \
                     (x < width * scale - scale and scaled_maze[x + scale - 2, y] == 0) or \
