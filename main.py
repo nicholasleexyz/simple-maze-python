@@ -35,12 +35,12 @@ def main():
         else:
             stack.pop()
 
-    scale = 2
+    scale = 4
     scaled_maze = np.kron(maze, np.ones((scale, scale), dtype=int))
 
-    for y in range(1, height * scale):
+    for y in range(1, height * scale - scale + 2):
         line = ""
-        for x in range(1, width * scale):
+        for x in range(1, width * scale - scale + 2):
             if (0 < x and scaled_maze[x - 1, y] == 0) or \
                     (0 < y and scaled_maze[x, y - 1] == 0) or \
                     (x < width * scale - scale and scaled_maze[x + scale - 2, y] == 0) or \
